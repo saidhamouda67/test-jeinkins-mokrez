@@ -60,13 +60,13 @@ pipeline {
                 script {
                     // If you are using Windows then you should use "bat" step
                     // Since unit testing is out of the scope we skip them
-                    bat "mvn deploy"
+                    bat "mvn -s settings.xml clean deploy"
                 }
             }
         }
         stage("mail") {
           steps {
-          mail bcc: '', body: '''Hello User the build of your project successed.
+          mail bcc: '', body: '''Hello saiiid the build of your project successed.
             Jenkins.''', cc: '', from: '', replyTo: '', subject: 'Build succed', to: 'mouhamedsaid.raoudh@esprit.tn'
           }
         
