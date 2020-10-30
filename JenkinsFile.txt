@@ -63,19 +63,18 @@ pipeline {
             }
         } 
 
-        stage("Qualty Gate sonar status check ") {
-
-            steps{
-                sleep time: 1, unit: 'HOURS'
-                script{
-                    def qg=waitForQualityGate()
-                     if(qg.status != 'OK'){
-                error "Pipeline aborded due to errors in the code or quality of code ${qg.status}"
-            }
+      stage("Quality Gate"){
+         options {
+            timeout(time: 1, unit: 'HOURS') 
+         }
+        steps {
+            script {
+                def qg = waitForQualityGate()
+                 if (qg.status != 'OK') {
+                 error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                        }
+                    }
                 }
-            }
-          
-        } 
 
            
          stage("mvn deploy") {
