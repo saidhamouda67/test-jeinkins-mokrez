@@ -54,9 +54,7 @@ pipeline {
      
         
         stage("sonar ") {
-             options {
-            withSonarQubeEnv(time: 1, unit: 'HOURS') 
-         }
+         
             steps {
                 script {
                     // If you are using Windows then you should use "bat" step
