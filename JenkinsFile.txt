@@ -54,11 +54,17 @@ pipeline {
      
         
         stage("sonar ") {
+             options {
+            withSonarQubeEnv(time: 1, unit: 'HOURS') 
+         }
             steps {
                 script {
                     // If you are using Windows then you should use "bat" step
                     // Since unit testing is out of the scope we skip them
-                    bat "mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=0b67cd4e41eb38424d580b14caad672aec92a6a0"
+                     withSonarQubeEnv('timesheet-environment') {
+
+                    bat "mvn sonar:sonar"
+                     }
                 }
             }
         } 
@@ -69,6 +75,7 @@ pipeline {
          }
         steps {
             script {
+                
                 def qg = waitForQualityGate()
                  if (qg.status != 'OK') {
                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
