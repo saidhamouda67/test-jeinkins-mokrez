@@ -64,12 +64,17 @@ pipeline {
         } 
 
         stage("Qualty Gate sonar status check ") {
-            timeout(time: 1, unit: 'HOURS'){
-            def qg=waitForQualityGate()
-            if(qg.status != 'OK'){
+
+            steps{
+                sleep time: 1, unit: 'HOURS'
+                script{
+                    def qg=waitForQualityGate()
+                     if(qg.status != 'OK'){
                 error "Pipeline aborded due to errors in the code or quality of code ${qg.status}"
             }
+                }
             }
+          
         } 
 
            
