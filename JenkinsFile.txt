@@ -52,8 +52,7 @@ pipeline {
             }
         }
      
-        
-        stage("sonar ") {
+                stage("sonar ") {
          
             steps {
                 script {
