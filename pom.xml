@@ -8,7 +8,7 @@
 		<version>2.2.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>tn.esprit.spring</groupId>
+	<groupId>tn.esprit.said</groupId>
 	<artifactId>khaled</artifactId>
 	<version>1.0</version>
 	<name>khaled</name>
